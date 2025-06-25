@@ -1,0 +1,18 @@
+---
+- name: Common Setup on All Nodes
+  hosts: kube-cluster
+  become: true
+  roles:
+    - common
+
+- name: Initialize Kubernetes Master
+  hosts: kube-master
+  become: true
+  roles:
+    - master
+
+- name: Join Workers to Cluster
+  hosts: kube-worker
+  become: true
+  roles:
+    - worker
